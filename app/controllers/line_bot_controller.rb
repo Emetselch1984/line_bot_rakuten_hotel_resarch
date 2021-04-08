@@ -2,6 +2,15 @@ class LineBotController < ApplicationController
   protect_from_forgery except: [:callback]
 
   def callback
+    body = request.body.read
+    p body
+    p request
+    signature = request.env['HTTP_X_LINE_SIGNATURE']
+    unless client.validate_signature(body, signature)
+      return head :bad_request
+    end
+    # bodyの文字列を配列で取得
+    events = client.parse_events_from(body)
   end
 
   private
