@@ -3,8 +3,9 @@ class LineBotController < ApplicationController
 
   def callback
     body = request.body.read
-    p body
-    p request
+    # p body
+    # p request
+    #署名が必要
     signature = request.env['HTTP_X_LINE_SIGNATURE']
     unless client.validate_signature(body, signature)
       return head :bad_request
@@ -18,7 +19,7 @@ class LineBotController < ApplicationController
         when Line::Bot::Event::MessageType::Text
           message = {
             type: 'text',
-            text: event.message['text']
+            text: "#{event.message['text']}#{body}#{request}"
           }
           client.reply_message(event['replyToken'], message)
         end
