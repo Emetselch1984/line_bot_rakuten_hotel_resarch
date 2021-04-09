@@ -60,13 +60,13 @@ class LineBotController < ApplicationController
         text: text
       }
     else
-      text = ''
-      response['hotels'].each do |hotel|
-        text <<
-          hotel[0]['hotelBasicInfo']['hotelName'] + "\n" +
-            hotel[0]['hotelBasicInfo']['hotelInformationUrl'] + "\n" +
-            "\n"
-      end
+      # text = ''
+      # response['hotels'].each do |hotel|
+      #   text <<
+      #     hotel[0]['hotelBasicInfo']['hotelName'] + "\n" +
+      #       hotel[0]['hotelBasicInfo']['hotelInformationUrl'] + "\n" +
+      #       "\n"
+      # end
       # flexMessageオブジェクト
       {
         type: 'flex',
