@@ -96,6 +96,14 @@ class LineBotController < ApplicationController
       contents: bubbles
     }
   end
+  def set_bubble(hotel)
+    {
+      type: 'bubble',
+      hero: set_hero(hotel),
+      body: set_body(hotel),
+      footer: set_footer(hotel)
+    }
+  end
   def set_hero(hotel)
     {
       type: 'image',
