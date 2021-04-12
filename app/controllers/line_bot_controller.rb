@@ -67,6 +67,10 @@ class LineBotController < ApplicationController
       #       hotel[0]['hotelBasicInfo']['hotelInformationUrl'] + "\n" +
       #       "\n"
       # end
+      # message = {
+      #   type: 'text',
+      #   text: text
+      # }
       # flexMessageオブジェクト
       {
         type: 'flex',
@@ -74,17 +78,6 @@ class LineBotController < ApplicationController
         contents: set_carousel(response['hotels'])
       }
     end
-    # text = ''
-    # response['hotels'].each do |hotel|
-    #   text <<
-    #     hotel[0]['hotelBasicInfo']['hotelName'] + "\n" +
-    #       hotel[0]['hotelBasicInfo']['hotelInformationUrl'] + "\n" +
-    #       "\n"
-    # end
-    # message = {
-    #   type: 'text',
-    #   text: text
-    # }
   end
   def set_carousel(hotels)
     bubbles = []
@@ -171,7 +164,7 @@ class LineBotController < ApplicationController
                 },
                 {
                   type: 'text',
-                  text: '￥' + hotel['hotelMinCharge'].to_s(:delimited) + '〜',
+                  text: '￥' + hotel['hotelMinCharge'].to_s,
                   wrap: true,
                   color: '#666666',
                   size: 'sm',
